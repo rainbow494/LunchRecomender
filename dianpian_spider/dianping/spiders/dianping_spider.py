@@ -3,18 +3,20 @@
 import scrapy
 import sys
 import logging
-from tutorial.items import DmozItem
+from dianping.items import DianpingItem
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-class DmozSpider(scrapy.Spider):
-    name = "dmoz"
+class DianpingSpider(scrapy.Spider):
+    name = "dianping"
     allowed_domains = ["www.ruanyifeng.com"]
     start_urls = [
         "http://www.ruanyifeng.com/blog/2014/02/",
     ]
+    
+
 
     def parse(self, response):
 
@@ -41,7 +43,7 @@ class DmozSpider(scrapy.Spider):
             # with open(filename, "wb") as f:
             #     f.write(response.body)
 
-            item = DmozItem()
+            item = DianpingItem()
             item['titleCSSSelector'] = sel.css('a').select('@href').extract_first()
             item['title'] = sel.xpath('a/text()').extract_first()
             item['link'] = sel.xpath('a/@href').extract_first()

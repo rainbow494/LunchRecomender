@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Scrapy",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}/scrapy",
+            "args": [
+                "crawl",
+                "dianping",
+                "-o",
+                "dianping.json"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Scrapy_Bac",
+            "type": "pythonExperimental",
+            "request": "launch",
+            "module": "scrapy",
+            "args": [
+                "crawl",
+                "dianping",
+                "-o",
+                "dianping.json"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

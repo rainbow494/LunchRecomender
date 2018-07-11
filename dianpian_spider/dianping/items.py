@@ -11,7 +11,7 @@ import scrapy
 # class TutorialItem(scrapy.Item):
 #     # define the fields for your item here like:itemText
 #     pass
-class DmozItem(scrapy.Item):
+class DianpingItem(scrapy.Item):
     titleCSSSelector = scrapy.Field()
     title = scrapy.Field()
     link = scrapy.Field()

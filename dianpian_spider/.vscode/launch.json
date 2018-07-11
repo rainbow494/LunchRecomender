@@ -8,7 +8,8 @@
             "name": "Scrapy",
             "type": "python",
             "request": "launch",
-            "program": "${file}/scrapy",
+            "program": "F:/Python27/Scripts/",
+            "module": "scrapy",
             "args": [
                 "crawl",
                 "dianping",
@@ -27,8 +28,7 @@
                 "dianping",
                 "-o",
                 "dianping.json"
-            ],
-            "console": "integratedTerminal"
+            ]
         }
     ]
 }

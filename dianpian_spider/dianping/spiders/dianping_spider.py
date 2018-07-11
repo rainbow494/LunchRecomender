@@ -1,24 +1,31 @@
 # coding=utf-8
 
 import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
 import sys
 import logging
+import dianping
 from dianping.items import DianpingItem
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-class DianpingSpider(scrapy.Spider):
+class DianpingSpider(CrawlSpider):
     name = "dianping"
     allowed_domains = ["www.ruanyifeng.com"]
     start_urls = [
-        "http://www.ruanyifeng.com/blog/2014/02/",
+        "http://www.ruanyifeng.com/blog/2004/01/",
     ]
-    
+    rules={
+        Rule(LinkExtractor(allow='http://www.ruanyifeng.com/blog/2003/12/'), callback='parse_item')
+        # ,
+        # Rule(LinkExtractor(allow='/2013/', restrict_css="ul li"), callback='parse_item')
+    }
 
 
-    def parse(self, response):
+    def parse_item(self, response):
 
         print sys.stdout.encoding
 

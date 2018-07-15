@@ -15,10 +15,10 @@ sys.setdefaultencoding('utf-8')
 
 class DianpingSpider(CrawlSpider):
     name = "dianping"
-    allowed_domains = ["www.dianping.com"]
+    allowed_domains = ["dianping.com"]
     start_urls = [
         # "http://www.dianping.com/shop/98912242",
-        "http://www.dianping.com/",
+        "http://dianping.com/",
     ]
     handle_httpstatus_list = [301, 403]
 
@@ -37,13 +37,22 @@ class DianpingSpider(CrawlSpider):
     # def parse_item(self, response):
     def parse(self, response):
 
+
+        if (('Location' in response.headers) and (response.headers['Location'] != response.request.url)):
+            yield scrapy.Request(url=response.headers['Location'], callback=self.parse)
+            return
+        else:
+            from scrapy.shell import inspect_response
+            inspect_response(response, self)
+
         print sys.stdout.encoding
 
         print sys.getdefaultencoding()
-        for sel in response.css('article'):
+        for sel in response.css('p.desc.J-desc'):
             item = DianpingItem()
             # item['titleCSSSelector'] = sel.css('a').select('@href').extract_first()
-            item['title'] = sel.xpath('h1/text()').extract_first()
+            # item['title'] = sel.xpath('./text()').extract_first()
+            item['title'] = ''.join(sel.xpath('./text()').extract())
             item['link'] = ''  # sel.xpath('a/@href').extract_first()
             item['desc'] = ''  # sel.xpath('text()').extract_first()
             yield item

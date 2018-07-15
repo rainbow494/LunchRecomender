@@ -4,7 +4,7 @@
 # logger = logging.getLogger(__name__)
 
 import random
-from scrapy.downloadermiddleware.useragent import UserAgentMiddleware
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 
 class RotateUserAgentMiddleware(UserAgentMiddleware):

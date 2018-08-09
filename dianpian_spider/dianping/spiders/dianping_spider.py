@@ -17,8 +17,8 @@ class DianpingSpider(CrawlSpider):
     name = "dianping"
     allowed_domains = ["dianping.com"]
     start_urls = [
-        # "http://www.dianping.com/shop/98912242",
-        "http://dianping.com/",
+        "http://www.dianping.com/shop/98912242",
+        # "http://dianping.com/",
     ]
     handle_httpstatus_list = [301, 403]
 
@@ -38,16 +38,16 @@ class DianpingSpider(CrawlSpider):
     def parse(self, response):
 
 
-        if (('Location' in response.headers) and (response.headers['Location'] != response.request.url)):
-            yield scrapy.Request(url=response.headers['Location'], callback=self.parse)
-            return
-        else:
-            from scrapy.shell import inspect_response
-            inspect_response(response, self)
+        # if (('Location' in response.headers) and (response.headers['Location'] != response.request.url)):
+        #     yield scrapy.Request(url=response.headers['Location'], callback=self.parse)
+        #     return
+        # else:
+        #     from scrapy.shell import inspect_response
+        #     inspect_response(response, self)
 
-        print sys.stdout.encoding
+        # print sys.stdout.encoding
 
-        print sys.getdefaultencoding()
+        # print sys.getdefaultencoding()
         for sel in response.css('p.desc.J-desc'):
             item = DianpingItem()
             # item['titleCSSSelector'] = sel.css('a').select('@href').extract_first()
